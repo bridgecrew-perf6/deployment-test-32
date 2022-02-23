@@ -16,18 +16,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2.4.0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.5.0
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-
-      - run: git config --global user.email "${{ env.git_email }}"
-      - run: git config --global user.name "${{ github.actor }}"
+          # fetch full history so things like auto-changelog work properly
+          fetch-depth: 0
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: ${{ env.node_version }}
 
       # Create a prerelease tag
       - name: Tag
         run: |
+          git config --global user.email "${{ env.git_email }}"
+          git config --global user.name "${{ github.actor }}"
           npm version prerelease --preid calibration
 
       - name: Get-npm-version
