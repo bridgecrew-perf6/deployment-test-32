@@ -38,5 +38,5 @@ jobs:
       # push to git
       - name: Push
         run: |
-          git push origin ${{ steps.package-version.outputs.current-version}}
+          git push origin v${{ steps.package-version.outputs.current-version}}
           git push origin primary
