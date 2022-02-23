@@ -21,6 +21,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
+      - name: Git
+        run: |
+          git config --global user.email "${{ env.git_email }}"
+          git config --global user.name "${{ github.actor }}"
+
       # Create a prerelease tag
       - name: Tag
         run: |
@@ -28,7 +33,4 @@ jobs:
 
       # push to git
       - name: Push
-        run: |
-          git config --global user.email "${{ env.git_email }}"
-          git config --global user.name "${{ github.actor }}"
-          git push origin primary
+        run: git push origin primary
