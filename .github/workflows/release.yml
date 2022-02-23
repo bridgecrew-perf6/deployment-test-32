@@ -66,11 +66,11 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_REF: refs/tags/v${{ steps.package-version.outputs.current-version }}
-          INPUT_TAG_NAME: v${{ steps.package-version.outputs.current-version }}
-
+        # env:
+        #   GITHUB_REF: refs/tags/v${{ steps.package-version.outputs.current-version }}
+        #   INPUT_TAG_NAME: v${{ steps.package-version.outputs.current-version }}
         with:
+          tag_name: v${{ steps.package-version.outputs.current-version }}
           body: |
             Visit at: https://${{ steps.ipfs.outputs.cid }}.ipfs.dweb.link
             ${{ steps.Changelog.outputs.changelog }}
