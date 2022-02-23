@@ -1,8 +1,9 @@
 name: push-to-release
 
-# on:
-#   push:
-#     branches: [primary]
+on:
+  push:
+    tags:
+      - "*"
 
 env:
   node_version: 14
