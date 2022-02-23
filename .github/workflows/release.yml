@@ -1,8 +1,8 @@
 name: push-to-release
 
-on:
-  push:
-    branches: [primary]
+# on:
+#   push:
+#     branches: [primary]
 
 env:
   node_version: 14
@@ -67,7 +67,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
-          GITHUB_REF: v${{ steps.package-version.outputs.current-version}}
+          GITHUB_REF: v${{ steps.package-version.outputs.current-version }}
         with:
           body: |
             Visit at: https://${{ steps.ipfs.outputs.cid }}.ipfs.dweb.link

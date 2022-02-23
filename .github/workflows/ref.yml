@@ -1,0 +1,31 @@
+name: push-to-release
+
+# on:
+#   push:
+#     branches: [primary]
+
+env:
+  node_version: 14
+  git_email: jpschwartz2@uwalumni.com
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14]
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          # fetch full history so things like auto-changelog work properly
+          fetch-depth: 0
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: ${{ env.node_version }}
+
+      - name: ref
+        run: echo ${{ env.GITHUB_REF }}
