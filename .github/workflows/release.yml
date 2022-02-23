@@ -25,20 +25,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
-      - run: npm i
-      - run: npm run export
-        # run: echo ${{ github.sha }} > Release.txt
-      - run: npm run store-ipfs
-        env:
-          WEB3_STORAGE_TOKEN: ${{ secrets.WEB3_STORAGE_TOKEN }}
+      - name: Build
+        run: |
+          npm i
+          npm run export
+          npm run store-ipfs
 
-      - name: Test
-        run: cat Release.txt
-
+      # - name: Test
+      #   run:
       - name: Release
         uses: softprops/action-gh-release@v1
-        with:
-          files: Release.txt
+        # with:
+        #   files: Release.txt
 
       # - run: npm ci --ignore-scripts
       # - run: npm run lint
