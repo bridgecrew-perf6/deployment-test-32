@@ -21,5 +21,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
+      # Create a prerelease tag
       - name: Tag
-        run:
+        run: |
+          npm version prerelease --preid calibration
+
+      # push to git
+      - name: Push
+        run: |
+          git config --global user.email "${{ env.git_email }}"
+          git config --global user.name "${{ github.actor }}"
+          git push origin primary
