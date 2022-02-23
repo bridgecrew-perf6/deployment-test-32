@@ -26,10 +26,13 @@ jobs:
           cache: "npm"
 
       - name: Build
+        id: build
         run: |
           npm i
           npm run export
           npm run store-ipfs
+        env:
+          WEB3_STORAGE_TOKEN: ${{ secrets.WEB3_STORAGE_TOKEN }}
 
       # - name: Test
       #   run:
