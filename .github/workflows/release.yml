@@ -47,5 +47,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          name: https://${{ steps.ipfs.outputs.cid }}.ipfs.dweb.link
           body: |
             ${{ steps.Changelog.outputs.changelog }}
