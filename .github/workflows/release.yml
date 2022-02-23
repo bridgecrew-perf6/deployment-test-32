@@ -25,13 +25,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
+      - name: Build
+        run: npm i
+        run: npm run export
+        # run: echo ${{ github.sha }} > Release.txt
+
       - name: IPFS
+        run: npm i
         run: npm run store-ipfs
         env:
           WEB3_STORAGE_TOKEN: ${{ secrets.WEB3_STORAGE_TOKEN }}
 
-      - name: Build
-        run: echo ${{ github.sha }} > Release.txt
       - name: Test
         run: cat Release.txt
 
