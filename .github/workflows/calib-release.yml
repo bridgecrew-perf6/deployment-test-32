@@ -28,9 +28,8 @@ jobs:
         with:
           node-version: ${{ env.node_version }}
 
-      - run: |
-        git config --global user.email "${{ env.git_email }}"
-        git config --global user.name "${{ github.actor }}"
+      - run: git config --global user.email "${{ env.git_email }}"
+      - run: git config --global user.name "${{ github.actor }}"
 
       # Create a prerelease tag
       - name: Tag
