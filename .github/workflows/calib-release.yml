@@ -1,8 +1,9 @@
 name: calib-release
 
 on:
-  push:
-    branches: [primary]
+  # push:
+  #   branches: [primary]
+  workflow_dispatch:
 
 jobs:
   build:
