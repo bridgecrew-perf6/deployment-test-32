@@ -34,15 +34,15 @@ jobs:
         env:
           WEB3_STORAGE_TOKEN: ${{ secrets.WEB3_STORAGE_TOKEN }}
 
-      - name: Test
-        run: echo ${{ env.IPFS_HASH }}
+      - name:
+        run: echo ${{ env.IPFS_HASH }} > Release.txt
         env:
           IPFS_HASH: ${{ steps.build.outputs.stdout }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        # with:
-        #   files: Release.txt
+        with:
+          files: Release.txt
 
       # - run: npm ci --ignore-scripts
       # - run: npm run lint
