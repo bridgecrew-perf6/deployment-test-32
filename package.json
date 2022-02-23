@@ -7,6 +7,7 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
+    "store-ipfs": "npx @glif/deployment-cli ipfs ./out $WEB3_STORAGE_TOKEN",
     "lint": "next lint"
   },
   "dependencies": {
